@@ -152,7 +152,7 @@ sudo chown -R $OE_USER:$OE_USER $OE_HOME
 echo -e "\n==== Installing ODOO Server ===="
 sudo su odoo -c "git clone --branch $OE_VERSION https://github.com/OCA/OCB.git $OE_HOME_EXT/"
 
-sudo su odoo "git clone --branch $OE_VERSION https://github.com/clouder-community/clouder.git $OE_IMPORTED_ADDONS/"
+sudo su odoo -c "git clone --branch $OE_VERSION https://github.com/clouder-community/clouder.git $OE_IMPORTED_ADDONS/"
 
 echo -e "* Create server config file"
 sudo touch $OE_CONFDIR/$OE_CONFIG.conf
