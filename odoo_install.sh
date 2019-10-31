@@ -1,7 +1,6 @@
 ################################################################################
-# Script for Installation: ODOO Saas4/Trunk server on Ubuntu 14.04 LTS
-# Author: André Schenkels, ICTSTUDIO 2014
-# Tuned by Pascal GOUHIER , 2015
+# Script for Installation: ODOO 10
+# Author: Pascal GOUHIER , 2017
 # ---> Adapted for OCB from OCA
 # ---> Directory Structure easier to backup to another server
 # ---> Adding option "auto_reload" and python-pyinotify dependencie
@@ -10,7 +9,7 @@
 #-------------------------------------------------------------------------------
 #
 # This script will install ODOO Server on
-# clean Ubuntu 14.04 Server
+# clean Ubuntu 18.04 Server
 #
 #-------------------------------------------------------------------------------
 # USAGE:
