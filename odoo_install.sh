@@ -72,7 +72,7 @@ echo "\n##Odoo version\n" >> odoo_install.log
 echo "OE_VERSION=$OE_VERSION" >> odoo_install.log
 
 #set the superadmin password
-OE_SUPERADMIN=`python -c 'import base64, os; print(base64.b64encode(os.urandom(24)))'`
+OE_SUPERADMIN=`python3 -c 'import base64, os; print(base64.b64encode(os.urandom(24)))'`
 OE_CONFIG="$OE_USER-server"
 
 echo "\n##Superadmin password\n" >> odoo_install.log
@@ -83,7 +83,7 @@ echo "OE_CONFIG=$OE_CONFIG" >> odoo_install.log
 DB_HOST="127.0.0.1"
 DB_PORT="5432"
 DB_USER="$OE_USER"
-DB_PASSWORD=`python -c 'import base64, os; print(base64.b64encode(os.urandom(24)))'`
+DB_PASSWORD=`python3 -c 'import base64, os; print(base64.b64encode(os.urandom(24)))'`
 
 echo "\n##Database configuration\n" >> odoo_install.log
 echo "DB_HOST=$DB_HOST" >> odoo_install.log
