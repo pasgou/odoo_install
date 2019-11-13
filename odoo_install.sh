@@ -133,6 +133,7 @@ sudo apt install git python3-pip build-essential wget python3-dev python3-venv \
 # sudo pip install erppeek
 
 echo -e "\n---- Install wkhtml and place on correct place for ODOO ----"
+sudo apt install -yq fontconfig libjpeg-turbo8 libjpeg-turbo8 libxrender1xfonts-75dpi xfonts-base
 sudo wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb
 sudo dpkg -i wkhtmltox_0.12.5-1.bionic_amd64.deb && sudo apt install -f
 sudo cp /usr/local/bin/wkhtmltopdf /usr/bin
@@ -151,9 +152,9 @@ sudo chown -R $OE_USER:$OE_USER $OE_HOME
 #--------------------------------------------------
 echo -e "\n==== Installing ODOO Server ===="
 sudo su odoo -c "git clone --branch $OE_VERSION https://github.com/OCA/OCB.git $OE_HOME_EXT/"
-sudo su odoo -c "git clone --branch $OE_VERSION https://github.com/it-projects-llc/saas-addons.git $OE_IMPORTED_ADDONS/"
-sudo su odoo -c "git clone --branch $OE_VERSION https://github.com/OCA/web.git $OE_IMPORTED_ADDONS/"
-sudo su odoo -c "git clone --branch $OE_VERSION https://github.com/OCA/queue.git $OE_IMPORTED_ADDONS/"
+sudo su odoo -c "git clone --branch $OE_VERSION https://github.com/it-projects-llc/saas-addons.git $OE_IMPORTED_ADDONS/saas-addons/"
+sudo su odoo -c "git clone --branch $OE_VERSION https://github.com/OCA/web.git $OE_IMPORTED_ADDONS/web/"
+sudo su odoo -c "git clone --branch $OE_VERSION https://github.com/OCA/queue.git $OE_IMPORTED_ADDONS/queue/"
 sudo pip3 install wheel
 sudo pip3 install -r $OE_HOME_EXT/requirements.txt
 sudo pip3 install -r $OE_IMPORTED_ADDONS/saas-addons/requirements.txt
