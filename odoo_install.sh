@@ -184,11 +184,9 @@ sudo su root -c "echo 'db_password = $DB_PASSWORD' >> $OE_CONFDIR/$OE_CONFIG.con
 sudo su root -c "echo '#### Odoo' >> $OE_CONFDIR/$OE_CONFIG.conf"
 sudo su root -c "echo 'auto_reload = True' >> $OE_CONFDIR/$OE_CONFIG.conf"
 sudo su root -c "echo 'addons_path=$OE_HOME_EXT/addons,$OE_IMPORTED_ADDONS,$OE_CUSTOM_ADDONS,$OE_PRIVATE_ADDONS' >> $OE_CONFDIR/$OE_CONFIG.conf"
-sudo su root -c "echo 'logfile = $OE_LOGDIR/$OE_CONFIG$1.log' >> $OE_CONFDIR/$OE_CONFIG.conf"
-sudo su root -c "echo 'logrotate = True' >> $OE_CONFDIR/$OE_CONFIG.conf"
+sudo su root -c "echo 'syslog = True' >> $OE_CONFDIR/$OE_CONFIG.conf"
 sudo su root -c "echo 'data_dir = $OE_FILESTORE' >> $OE_CONFDIR/$OE_CONFIG.conf"
-sudo su root -c "echo 'data_dir = $OE_FILESTORE' >> $OE_CONFDIR/$OE_CONFIG.conf"
-sudo su root -c "echo 'workers = 3' >> $OE_CONFDIR/$OE_CONFIG.conf"
+sudo su root -c "echo 'workers = 2' >> $OE_CONFDIR/$OE_CONFIG.conf"
 sudo su root -c "echo 'server_wide_modules = web,queue_job,saas' >> $OE_CONFDIR/$OE_CONFIG.conf"
 sudo su root -c "echo '[queue_job]' >> $OE_CONFDIR/$OE_CONFIG.conf"
 sudo su root -c "echo 'channels = root:2' >> $OE_CONFDIR/$OE_CONFIG.conf"
@@ -208,22 +206,23 @@ sudo cp $OE_HOME_EXT/start.sh start.sh
 
 echo -e "* Create Systemd Unit File"
 sudo touch /etc/systemd/system/odoo12.service
-sudo su root -c "echo '[Unit]\n \
-Description=Odoo12 \n \
-Requires=postgresql.service\n \
-After=network.target postgresql.service\n \
-\n \
-[Service]\n \
-Type=simple\n \
-SyslogIdentifier=odoo12\n \
-PermissionsStartOnly=true\n \
-User=$OE_USER\n \
-Group=$OE_USER\n \
-ExecStart=python3 OE_HOME_EXT/odoo-bin -c $OE_CONFDIR/$OE_CONFIG.conf\n \
-StandardOutput=journal+console\n \
-\n \
-[Install]\n \
-WantedBy=multi-user.target\n \'"
+sudo su root -c "echo '[Unit]
+Description=Odoo12
+Requires=postgresql.service
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+SyslogIdentifier=odoo12
+PermissionsStartOnly=true
+User=$OE_USER
+Group=$OE_USER
+ExecStart=python3 OE_HOME_EXT/odoo-bin -c $OE_CONFDIR/$OE_CONFIG.conf
+StandardOutput=journal+console
+
+[Install]
+WantedBy=multi-user.target' >> /etc/systemd/system/odoo12.service"
+sudo chmod 755 /etc/systemd/system/odoo12.service
 
 echo -e "* Start ODOO on Startup"
 sudo systemctl daemon-reload
