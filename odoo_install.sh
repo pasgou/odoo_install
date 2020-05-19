@@ -162,6 +162,7 @@ sudo pip3 install -r $OE_IMPORTED_ADDONS/web/requirements.txt
 sudo su odoo -c "mv -f $OE_IMPORTED_ADDONS/saas-addons/* $OE_IMPORTED_ADDONS"
 sudo su odoo -c "mv -f $OE_IMPORTED_ADDONS/web/* $OE_IMPORTED_ADDONS"
 sudo su odoo -c "mv -f $OE_IMPORTED_ADDONS/queue/* $OE_IMPORTED_ADDONS"
+sudo pip3 install python-barcode
 
 echo -e "* Create server config file"
 sudo touch $OE_CONFDIR/$OE_CONFIG.conf
