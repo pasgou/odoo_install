@@ -153,13 +153,18 @@ sudo chown -R $OE_USER:$OE_USER $OE_HOME
 echo -e "\n==== Installing ODOO Server ===="
 sudo su odoo -c "git clone --branch $OE_VERSION https://github.com/OCA/OCB.git $OE_HOME_EXT/"
 sudo su odoo -c "git clone --branch $OE_VERSION https://github.com/it-projects-llc/saas-addons.git $OE_IMPORTED_ADDONS/saas-addons/"
+sudo su odoo -c "git clone --branch $OE_VERSION https://github.com/itpp-labs/access-addons.git $OE_IMPORTED_ADDONS/access-addons/"
+sudo su odoo -c "git clone --branch $OE_VERSION https://github.com/itpp-labs/misc-addons.git $OE_IMPORTED_ADDONS/misc-addons/"
 sudo su odoo -c "git clone --branch $OE_VERSION https://github.com/OCA/web.git $OE_IMPORTED_ADDONS/web/"
 sudo su odoo -c "git clone --branch $OE_VERSION https://github.com/OCA/queue.git $OE_IMPORTED_ADDONS/queue/"
 sudo pip3 install wheel
 sudo pip3 install -r $OE_HOME_EXT/requirements.txt
 sudo pip3 install -r $OE_IMPORTED_ADDONS/saas-addons/requirements.txt
+sudo pip3 install -r $OE_IMPORTED_ADDONS/misc-addons/requirements.txt
 sudo pip3 install -r $OE_IMPORTED_ADDONS/web/requirements.txt
 sudo su odoo -c "mv -f $OE_IMPORTED_ADDONS/saas-addons/* $OE_IMPORTED_ADDONS"
+sudo su odoo -c "mv -f $OE_IMPORTED_ADDONS/access-addons/* $OE_IMPORTED_ADDONS"
+sudo su odoo -c "mv -f $OE_IMPORTED_ADDONS/misc-addons/* $OE_IMPORTED_ADDONS"
 sudo su odoo -c "mv -f $OE_IMPORTED_ADDONS/web/* $OE_IMPORTED_ADDONS"
 sudo su odoo -c "mv -f $OE_IMPORTED_ADDONS/queue/* $OE_IMPORTED_ADDONS"
 sudo pip3 install python-barcode
