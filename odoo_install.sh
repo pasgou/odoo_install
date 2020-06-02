@@ -167,7 +167,7 @@ sudo su odoo -c "mv -f $OE_IMPORTED_ADDONS/access-addons/* $OE_IMPORTED_ADDONS"
 sudo su odoo -c "mv -f $OE_IMPORTED_ADDONS/misc-addons/* $OE_IMPORTED_ADDONS"
 sudo su odoo -c "mv -f $OE_IMPORTED_ADDONS/web/* $OE_IMPORTED_ADDONS"
 sudo su odoo -c "mv -f $OE_IMPORTED_ADDONS/queue/* $OE_IMPORTED_ADDONS"
-sudo pip3 install python-barcode
+sudo pip3 install python-barcode request
 
 echo -e "* Create server config file"
 sudo touch $OE_CONFDIR/$OE_CONFIG.conf
@@ -223,7 +223,7 @@ SyslogIdentifier=odoo12
 PermissionsStartOnly=true
 User=$OE_USER
 Group=$OE_USER
-ExecStart=python3 OE_HOME_EXT/odoo-bin -c $OE_CONFDIR/$OE_CONFIG.conf
+ExecStart=/usr/bin/python3 $OE_HOME_EXT/odoo-bin -c $OE_CONFDIR/$OE_CONFIG.conf
 StandardOutput=journal+console
 
 [Install]
