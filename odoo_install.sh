@@ -133,7 +133,7 @@ sudo apt install git python3-pip build-essential wget python3-dev python3-venv \
 # sudo pip install erppeek
 
 echo -e "\n---- Install wkhtml and place on correct place for ODOO ----"
-sudo apt install -yq fontconfig libjpeg-turbo8 libjpeg-turbo8 libxrender1xfonts-75dpi xfonts-base
+sudo apt install -y fontconfig libjpeg-turbo8 libjpeg-turbo8 libxrender1 xfonts-75dpi xfonts-base
 sudo wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb
 sudo dpkg -i wkhtmltox_0.12.5-1.bionic_amd64.deb && sudo apt install -f
 sudo cp /usr/local/bin/wkhtmltopdf /usr/bin
